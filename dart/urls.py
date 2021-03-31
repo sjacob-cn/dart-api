@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse 
 from .schema import schema
 from graphene_django.views import GraphQLView
 def ping(request):

@@ -3,38 +3,12 @@ import datetime
 
 def get_wrapper_details(data_wrapper, qs,page, size):
     
-    if page <= 1:
-        skip = 0
-        current_page = 1
-    else:
-        skip = (page - 1) * size
-        current_page = page
-
-    total_elements = qs.count()
-    total_pages = int(total_elements / size) 
-    total_pages += 1 if (total_elements % size) > 0 else 0
-
-    
-    if total_pages > current_page:
-        has_next_page = True
-    else:
-        has_next_page = False
-    
-    if skip:
-        qs = qs[skip:]
-    if size:
-        qs = qs[:size]
-    number_of_elements = qs.count()
+    print('..........................',qs)
     
     keyword_args = {
-        'stages': qs,
+        'stages': qs
         # 'touch_point':qs,
-        'total_elements': total_elements,
-        'size': size,
-        'total_pages': total_pages,
-        'current_page': current_page,
-        'has_next_page': has_next_page,
-        'number_of_elements': number_of_elements,         
+                
     }
     return data_wrapper(**keyword_args)
 
