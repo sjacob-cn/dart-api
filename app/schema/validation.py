@@ -1,12 +1,9 @@
 from graphql import GraphQLError
-
-
-class Validation:
-
-    def check_is_date_empty(value, field):
-        if value is None or value == '':
-            raise GraphQLError("{0} field can't be empty".format(field.title()))
-
-    def check_is_empty(value, field):
-        if value is None or value == '' or value.isspace():
-            raise GraphQLError("{0} field can't be empty".format(field.title()))
+import datetime
+def validate_data(**kwargs):
+    try:
+        dt = datetime.datetime.strptime(kwargs['dt'],'%Y-%m-%d')
+    except Exception as e:
+        raise GraphQLError("Invalid Date Format") 
+    if kwargs['trace_id'] == '':
+        raise GraphQLError("Trace ID should not be empty")

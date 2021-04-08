@@ -36,6 +36,7 @@ class Pipeline_traceability(models.Model):
     brand = models.CharField(max_length=50)
     step = models.IntegerField()
     step_detail = models.CharField(max_length=200)
+    system = models.CharField(max_length=200,null=False)
     # system = models.CharField(max_length=200,null=False)
     class Meta:
         managed = settings.MODEL_MANGED
